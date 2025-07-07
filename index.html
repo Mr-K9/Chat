@@ -1,38 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head><title>Local Login | MPM</title></head>
+<head>
+  <title>Login & Signup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <h2>Signup</h2>
-  <input id="su-username" placeholder="Username">
-  <input id="su-password" placeholder="Password" type="password">
-  <button onclick="signup()">Sign Up</button>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Username" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
 
-  <h2>Login</h2>
-  <input id="li-username" placeholder="Username">
-  <input id="li-password" placeholder="Password" type="password">
-  <button onclick="login()">Log In</button>
+    <hr>
 
-  <script>
-    function signup() {
-      const u = document.getElementById('su-username').value;
-      const p = document.getElementById('su-password').value;
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-      if (users[u]) return alert('User exists!');
-      users[u] = p;
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('Signup success');
-    }
-    function login() {
-      const u = document.getElementById('li-username').value;
-      const p = document.getElementById('li-password').value;
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-      if (users[u] && users[u] === p) {
-        localStorage.setItem('loggedInUser', u);
-        alert('Login success');
-      } else {
-        alert('Invalid login');
-      }
-    }
-  </script>
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <input type="text" id="signupUsername" placeholder="New Username" required>
+      <input type="password" id="signupPassword" placeholder="New Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p id="message"></p>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
