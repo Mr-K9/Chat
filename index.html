@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><title>Local Login | MPM</title></head>
+<body>
+  <h2>Signup</h2>
+  <input id="su-username" placeholder="Username">
+  <input id="su-password" placeholder="Password" type="password">
+  <button onclick="signup()">Sign Up</button>
+
+  <h2>Login</h2>
+  <input id="li-username" placeholder="Username">
+  <input id="li-password" placeholder="Password" type="password">
+  <button onclick="login()">Log In</button>
+
+  <script>
+    function signup() {
+      const u = document.getElementById('su-username').value;
+      const p = document.getElementById('su-password').value;
+      let users = JSON.parse(localStorage.getItem('users') || '{}');
+      if (users[u]) return alert('User exists!');
+      users[u] = p;
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('Signup success');
+    }
+    function login() {
+      const u = document.getElementById('li-username').value;
+      const p = document.getElementById('li-password').value;
+      let users = JSON.parse(localStorage.getItem('users') || '{}');
+      if (users[u] && users[u] === p) {
+        localStorage.setItem('loggedInUser', u);
+        alert('Login success');
+      } else {
+        alert('Invalid login');
+      }
+    }
+  </script>
+</body>
+</html>
